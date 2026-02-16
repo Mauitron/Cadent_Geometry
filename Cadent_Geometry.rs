@@ -204,7 +204,7 @@ pub fn is_inside_horizon(d: u64, mass: u64) -> bool {
     curv > (u64::MAX as u128) / (mass as u128)
 }
 
-//  this is a forced horizon, 
+//  this is a somewhat forced horizon, 
 /// Find horizon by walking outward. Returns first position outside.
 pub fn find_horizon(mass: u64) -> Option<u64> {
     if !is_inside_horizon(0, mass) { return None; }

@@ -20,7 +20,9 @@ where curvature bends rates and rates move position. Gravity, acceleration,
 and even black hole horizons can emerge naturally from the geometry itself.
 
 ### Informational / disclaimers
-This might be too early but:
+I am working on a more thorough, in-depth way to show and explain the 
+many different interesting oddities cadent geometry has to offer. This is for sharing
+it with others, but also making it public, for attribution purposes. 
 
 The images below, the one showing distance / depth and the one showing the
 internals of the cadent black hole are taken from different versions of one of my demos. 

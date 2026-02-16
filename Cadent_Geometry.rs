@@ -1,5 +1,5 @@
 //! Cadent Geometry and Physics: The Three-Circle Spacetime
-//! By Mauritz Nyfeldt
+//! By Maui_The_Magnificent (Mauritz Nyfeldt)
 //!
 //! One formula: d²/K. Everything else emerges.
 //!

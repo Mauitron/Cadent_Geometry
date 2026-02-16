@@ -95,6 +95,7 @@ This tells you how far a surface curves away at arc distance `d`. Everything els
 This is the formula that allows distance to emerge as a result, not a primitive
 
 ### Remaining Curvature Creates Gravity
+![recording-20260216-172420](https://github.com/user-attachments/assets/f81da6d1-9612-4b8c-b378-ba536e29525f)
 
 ```rust
 pub fn remaining_curv(d: u64) -> u128 {

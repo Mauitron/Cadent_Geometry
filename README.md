@@ -46,6 +46,7 @@ Cadents sphere diagonal in euclidean mesurment is exactly 3/4, or .75, while a e
 .707.
 
 ### The Drop Formula
+<img width="2391" height="1353" alt="image" src="https://github.com/user-attachments/assets/e8282512-e5b5-4dd2-9365-fb2e4eb43260" />
 
 The foundational irriducable operation in Cadent:
 
@@ -56,6 +57,7 @@ pub fn drop_at(d: u64) -> u128 {
 ```
 
 This tells you how far a surface curves away at arc distance `d`. Everything else derives from this.
+This is the formula that allows distance to emerge as a result, not a primitive
 
 ### Remaining Curvature Creates Gravity
 
@@ -66,7 +68,7 @@ pub fn remaining_curv(d: u64) -> u128 {
 }
 ```
 
-Because scale is relative in Cadent, the curvature remaining from your position to the horizon,
+Because scale is relative in Cadent, the curvature remaining from your position to the arc horizon,
 is the gravitational field in Cadent geometry, maximum at center, zero at horizon. because you are
 measuring the curvature of space
 
@@ -92,6 +94,10 @@ When a particle sits at position `h`, the remaining curvature at that position c
 that bends `v_rate` and `t_rate`. This cross-coupling creates physics-like behavior.
 
 ## Black Holes Emerge from Cadent Geometry
+Not the most visually impressive example, my engine is still primitive, but this is inside a cadent black hole
+showing a visual representation of the behavior. 
+<img width="2396" height="1351" alt="image" src="https://github.com/user-attachments/assets/9698593a-fb66-4cb9-bcd7-2571f0668f89" />
+
 
 In Cadent, black holes aren't added, they emerge in a few different ways.
 one is duo to dimensioal collaps. when the curvature becomes so great that 2 circles overlap
@@ -211,7 +217,7 @@ PLANET_METER = 2^39    // Maps to real-world meters
 ```
 
 
-## Use Cases
+## Possible Use Cases:
 
 - **Unifying Game physics and geometry** All the same system for rendering
 - **Procedural generation** using deterministic particle systems

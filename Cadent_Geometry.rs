@@ -22,6 +22,10 @@
 // Constants: Everything derives from K = 2^63
 // =============================================================================
 
+// I extracted the geometry, there are some pre-defined constants
+// and other artifacts that are not explicitly part of the geometry
+// definition itself, but are left in as they are both practically useful
+// and for context.
 pub const QUARTER: u64 = 1u64 << 62;
 pub const HALF: u64 = 1u64 << 63;
 pub const HORIZON_K_SHIFT: u32 = 63;

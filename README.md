@@ -17,7 +17,40 @@ Where `K = 2^63`, and `d` is arc distance.
 Cadent Geometry is the geometric framework I built on for my own rendering engine.
 It is defined by three disconnected circles (h, v, t) with 2^64 discrete points each,
 where curvature bends rates and rates move position. Gravity, acceleration,
-and even black hole horizons emerge naturally from the geometry itself.
+and even black hole horizons can emerge naturally from the geometry itself.
+
+### Informational / disclaimers
+This might be too early but:
+
+The images below, the one showing distance / depth and the one showing the
+internals of the cadent black hole are taken from different versions of one of my demos. 
+Everything is running on 1 core of a 7700x3D, running at 1080p and they are using 
+~10.6 mb of ram.
+
+The fps on the black hole one is clamped, so to be clear, it is about 500 fps
+slower than the first one. So even if the behavior of is emergent, it IS much more
+computationally expensive. 
+
+It is also worth noting that, even though the geometry has many cool things
+going for it. There are drawbacks. One of the major ones is the difficulty
+to represent some basic geometries such as spheres accurately. 
+At least, I find it horribly difficult at the moment, as it needs to be done as an
+'observer sphere'. But I am crossing my fingers that smarter people than I can
+help figure out ways to do it well before I do (looking at you who is reading this!)
+
+Cadent allows you to cheat though. You can place euclidean objects in cadent space,
+allowing you to at least make world distance be emergent, but the euclidean object
+itself, in the world, still needs its local distance primitive, otherwise it cannot
+express itself.
+
+If you want to try cadent geometry out in graphics rendering. You should understand that
+cadent does not work as one would expect. You can't treat things as being rendered from 
+the sceen in towards the camera, it works by doing the drop from the camera out towards
+the world. A good mental model for working with cadent is to think about the camera as being
+two things:
+
+1. the reference for defining the cadent arc meter
+2. as an observer on a world that would exist without it. 
 
 ## Why Cadent Geometry?
 

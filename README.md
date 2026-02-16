@@ -99,8 +99,8 @@ showing a visual representation of the behavior.
 <img width="2396" height="1351" alt="image" src="https://github.com/user-attachments/assets/9698593a-fb66-4cb9-bcd7-2571f0668f89" />
 
 
-In Cadent, black holes aren't added, they emerge in a few different ways.
-one is duo to dimensioal collaps. when the curvature becomes so great that 2 circles overlap
+In Cadent, black holes aren't added, they can emerge in a few different ways.
+one is due to dimensioal collaps. when the curvature becomes so great that 2 circles overlap
 creating an intersection where all angles point towards the region between them, or by the
 following:
 

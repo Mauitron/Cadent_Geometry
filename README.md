@@ -127,12 +127,13 @@ When a particle sits at position `h`, the remaining curvature at that position c
 that bends `v_rate` and `t_rate`. This cross-coupling creates physics-like behavior.
 
 ## Black Holes Emerge from Cadent Geometry
-Not the most visually impressive example, my engine is still primitive, but this is inside a cadent black hole
-showing a visual representation of the behavior. 
+Maybe not the most visually impressive example, as my engine is still primitive, 
+but this is what the inside of a cadent black hole looks like at the moment.
+Meant to show the visual representation of the behavior. 
 <img width="2396" height="1351" alt="image" src="https://github.com/user-attachments/assets/9698593a-fb66-4cb9-bcd7-2571f0668f89" />
 
 
-In Cadent, black holes aren't added, they can emerge in a few different ways.
+In Cadent, black holes aren't really added, they can emerge in a few different ways.
 one is due to dimensioal collaps. when the curvature becomes so great that 2 circles overlap
 creating an intersection where all angles point towards the region between them, or by the
 following:

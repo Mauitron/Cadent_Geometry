@@ -1,2 +1,230 @@
-# Cadent_Geometry
-A irreducible none-euclidean geometry with geometric physics
+# Cadent Geometry
+
+**A discrete arc-space geometry where physics emerges from a single irreducable formula**
+
+By Maui_The_Magnificent (Mauritz Nyfeldt)
+
+---
+
+## One Formula. Everything Else Emerges.
+
+```rust
+d²/K
+```
+
+Where `K = 2^63`, and `d` is arc distance.
+
+Cadent Geometry is the geometric framework I built on for my own rendering engine.
+It is defined by three disconnected circles (h, v, t) with 2^64 discrete points each,
+where curvature bends rates and rates move position. Gravity, acceleration,
+and even black hole horizons emerge naturally from the geometry itself.
+
+## Why Cadent Geometry?
+
+Originally created to **avoid vector normalization** in graphics by working
+in arc space instead of Euclidean space. by not using distance and scale and instead
+only operate on angles and curvature.
+
+When designing and exploring the geometry, I realized something i did not expect:
+You can make physics-like behavior emerged naturally from the geometric primitives.
+Particles accelerate toward regions of high curvature, rates saturate at boundaries,
+and black hole-like horizons appear when curvature becomes extreme.
+
+## Core Concepts
+
+### Arc Space, Not Euclidean
+
+Traditional graphics and physics work in Euclidean space with vectors that need constant normalization.
+Cadent works in **arc space**, circular coordinates where:
+- All positions wrap (full u64 range)
+- No square roots needed
+- No normalization required
+- Scale-independent by design
+
+The fundamental differences between their observed geometries is, L1 or L2 is not conserved in Cadent.
+Cadents sphere diagonal in euclidean mesurment is exactly 3/4, or .75, while a euclidean diagonal is
+.707.
+
+### The Drop Formula
+
+The foundational irriducable operation in Cadent:
+
+```rust
+pub fn drop_at(d: u64) -> u128 {
+    (d as u128) * (d as u128) >> HORIZON_K_SHIFT
+}
+```
+
+This tells you how far a surface curves away at arc distance `d`. Everything else derives from this.
+
+### Remaining Curvature Creates Gravity
+
+```rust
+pub fn remaining_curv(d: u64) -> u128 {
+    let rem = QUARTER - d;
+    (rem as u128) * (rem as u128) >> HORIZON_K_SHIFT
+}
+```
+
+Because scale is relative in Cadent, the curvature remaining from your position to the horizon,
+is the gravitational field in Cadent geometry, maximum at center, zero at horizon. because you are
+measuring the curvature of space
+
+## Three-Circle Spacetime
+
+A particle exists on three independent circles simultaneously:
+
+```rust
+pub struct Particle {
+    pub h: u64,      // Horizontal circle position
+    pub v: u64,      // Vertical circle position
+    pub t: u64,      // Time circle position
+    pub h_rate: i64, // Rate of change on h
+    pub v_rate: i64, // Rate of change on v
+    pub t_rate: i64, // Rate of change on t
+}
+```
+
+**curvature on each circle bends rates on the other two circles.**
+
+All geometry is derived from working with independent circles, physics appear when you couple them.
+When a particle sits at position `h`, the remaining curvature at that position creates an acceleration
+that bends `v_rate` and `t_rate`. This cross-coupling creates physics-like behavior.
+
+## Black Holes Emerge from Cadent Geometry
+
+In Cadent, black holes aren't added, they emerge in a few different ways.
+one is duo to dimensioal collaps. when the curvature becomes so great that 2 circles overlap
+creating an intersection where all angles point towards the region between them, or by the
+following:
+
+1. **High curvature** near circle centers creates extreme acceleration
+2. **Rate saturation** when rates hit `i64::MAX` or `i64::MIN`, the particle is trapped
+3. **Event horizon** the boundary where `M × curv(d) ≥ 2^64`
+
+```rust
+pub const GEOMETRIC_CRITICAL_MASS: u64 = 8;
+
+pub fn is_inside_horizon(d: u64, mass: u64) -> bool {
+    let curv = remaining_curv(d);
+    curv > (u64::MAX as u128) / (mass as u128)
+}
+```
+
+A particle with mass ≥ 8 creates a region where other particles cannot escape.
+This falls directly out of the integer bounds and curvature formula.
+
+## Usage
+
+```rust
+use cadent_geometry::*;
+
+// Create a particle with initial rates
+let mut particle = Particle::new(
+    100_000,  // h_rate
+    50_000,   // v_rate
+    1_000     // t_rate
+);
+
+// Simulate with unit mass
+for _ in 0..1000 {
+    particle.tick();
+
+    if particle.is_trapped() {
+        println!("Particle trapped in geometric singularity!");
+        break;
+    }
+}
+
+// Or with custom mass
+let mut heavy = Particle::new(0, 0, 1000);
+for _ in 0..1000 {
+    heavy.tick_with_mass(100);
+}
+```
+
+### Circle Navigation
+
+Convert facing direction to movement:
+
+```rust
+let facing: u64 = QUARTER; // 90 degrees
+let step: u64 = 1000; // this is just a number for the example 
+
+let (dh, dv) = circle_step(facing, step);
+// Returns horizontal and vertical deltas
+```
+
+### Check for Horizons, even though you should not need too
+
+```rust
+let mass = 20;
+if let Some(horizon_pos) = find_horizon(mass) {
+    println!("Event horizon at arc position: {}", horizon_pos);
+    println!("Radius in meters: {}", dp_to_meters(horizon_pos));
+}
+```
+
+## Properties
+
+### No std Required
+
+Cadent is `#![no_std]` compatible, pure integer math, no allocations, no floating point.
+works everywhere, from embedded systems, WASM, or deterministic simulations etc etc.
+
+### Deterministic
+
+All operations use wrapping/saturating integer arithmetic.
+Same input = same output, always. No floating-point non-determinism.
+
+### Scale Independent
+
+Because it's arc-based, Cadent naturally handles any scale.
+The `PLANET_METER_SHIFT` constant is what I used to create my planet, and it lets you map to
+real-world units, but the geometry works at any scale.
+
+## Is This Real Physics?
+
+Cadent Geometry is not derived from general relativity or quantum mechanics.
+It's an **mathematical framework** that produces similar physics-like behavior but
+from the a geometry. I have found that things like snell's law has a natural, accurate,
+way to be expressed in Cadent, But other things like the ACMB, not so much.
+I have also gotten some good hints on EM emerging aswell. But I will share more on these things later.
+
+Think of it as:
+-  A consistent mathematical system
+-  An usefull simulation framework
+-  A seemingly novel approach to game physics or graphics
+-  Creative exploration of discrete geometry
+
+
+It's functional for graphics rendering. 
+
+## Key Constants
+
+```rust
+K = 2^63               // The fundamental constant
+QUARTER = 2^62         // Quarter circle (90°)
+HALF = 2^63            // Half circle (180°)
+RADIUS = 2^62          // Circle radius
+PLANET_METER = 2^39    // Maps to real-world meters
+```
+
+
+## Use Cases
+
+- **Unifying Game physics and geometry** All the same system for rendering
+- **Procedural generation** using deterministic particle systems
+- **Graphics** without vector normalization
+- **Embedded simulations** on resource-constrained devices
+- **Educational** exploration of alternative geometries is fun
+- **Maybe Deterministic networking** (lockstep multiplayer)
+
+## Contributing
+
+This is exploratory work to solve real problems. If you find interesting emergent behaviors,
+mathematical properties, or other novel applications, please feel free to open an issue or PR.
+
+---
+
+**"In arc space, distance is derivative. Curvature is primitive."**

@@ -19,7 +19,7 @@ It is defined by three disconnected circles (h, v, t) with 2^64 discrete points 
 where curvature bends rates and rates move position. Gravity, acceleration,
 and even black hole horizons can emerge naturally from the geometry itself.
 
-### Informational / disclaimers
+### Information / disclaimers
 I am working on a more thorough, in-depth way to show and explain the 
 many different interesting oddities cadent geometry has to offer. This is for sharing
 it with others, but also making it public, for attribution purposes. 

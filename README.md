@@ -2,8 +2,6 @@
 
 **A discrete arc-space geometry where physics emerges from a single irreducable formula**
 
-By Maui_The_Magnificent (Mauritz Nyfeldt)
-
 ---
 
 ## One Formula. Everything Else Emerges.

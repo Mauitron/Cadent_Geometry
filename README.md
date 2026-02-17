@@ -70,7 +70,7 @@ and black hole-like horizons appear when curvature becomes extreme.
 ### Arc Space, Not Euclidean
 
 Traditional graphics and physics work in Euclidean space with vectors that need constant normalization.
-Cadent works in **arc space**, circular coordinates where:
+Cadent works in **arc space**, circular 'coordinates' where:
 - All positions wrap (full u64 range)
 - No square roots needed
 - No normalization required

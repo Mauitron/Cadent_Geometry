@@ -12,7 +12,7 @@ d²/K
 
 Where `K = 2^63`, and `d` is arc distance.
 
-Cadent Geometry is the geometric framework I built on for my own rendering engine.
+Cadent Geometry is the geometric framework I built for my own rendering engine.
 It is defined by three disconnected circles (h, v, t) with 2^64 discrete points each,
 where curvature bends rates and rates move position. Gravity, acceleration,
 and even black hole horizons can emerge naturally from the geometry itself.
@@ -24,7 +24,7 @@ it with others, but also making it public, for attribution purposes.
 
 The images below, the one showing distance / depth and the one showing the
 internals of the cadent black hole are taken from different versions of one of my demos. 
-Everything is running on 1 core of a 7700x3D, running at 1080p and they are using 
+Everything is running on 1 core of a 7800x3D, running at 1080p and they are using 
 ~10.6 mb of ram.
 
 The fps on the black hole one is clamped, so to be clear, it is about 500 fps
